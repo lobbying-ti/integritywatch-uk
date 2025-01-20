@@ -560,94 +560,125 @@ fetch('./data/iw_uk.json?' + randomPar)
       }
 
       // Chart 3: Hosts Chart
-      var createHostsChart = function () {
-        var chart = charts.hosts.chart;
-        var dimension = ndx.dimension(function (d) {
-          return d.rep_new;;
-        });
-        var group = dimension.group().reduceSum(function (d) {
-          return 1;
-        });
-        var filteredGroup = (function (source_group) {
-          return {
-            all: function () {
-              return source_group.top(10).filter(function (d) {
-                return (d.value != 0);
-              });
-            }
-          };
-        })(group);
-        var width = recalcWidth(charts.hosts.divId);
-        var charsLength = recalcCharsLength(width);
-
-        chart
-          .width(width)
-          .height(420)
-          .margins({ top: 0, left: 0, right: 0, bottom: 20 })
-          .group(filteredGroup)
-          .dimension(dimension)
-          .colorCalculator(function (d, i) {
-            return vuedata.colors.default;
-          })
-          .label(function (d) {
-            if (d.key && d.key.length > charsLength) {
-              return d.key.substring(0, charsLength) + '...';
-            }
-            return d.key;
-          })
-          .title(function (d) {
-            return d.key + ': ' + d.value;
-          })
-          .elasticX(true)
-          .xAxis().ticks(4);
-        //chart.xAxis().tickFormat(numberFormat);
-        chart.render();
+// Chart 3: Hosts Chart
+var createHostsChart = function () {
+  var chart = charts.hosts.chart;
+  var dimension = ndx.dimension(function (d) {
+    return d.rep_new;
+  });
+  var group = dimension.group().reduceSum(function (d) {
+    return 1;
+  });
+  var filteredGroup = (function (source_group) {
+    return {
+      all: function () {
+        // Get the current crossfilter state including search filters
+        var allData = source_group.all();
+        
+        // If no data after filtering, return empty array
+        if (!allData.length) return [];
+        
+        // If we have a filter on this dimension, we should only show that host
+        if (dimension.hasCurrentFilter()) {
+          return allData.filter(function(d) {
+            return d.key === dimension.currentFilter();
+          });
+        }
+        
+        // Otherwise show top 10 from filtered data
+        return allData
+          .filter(function(d) { return d.value > 0; })
+          .sort(function(a, b) { return b.value - a.value; })
+          .slice(0, 10);
       }
+    };
+  })(group);
+  var width = recalcWidth(charts.hosts.divId);
+  var charsLength = recalcCharsLength(width);
+
+  chart
+    .width(width)
+    .height(420)
+    .margins({ top: 0, left: 0, right: 0, bottom: 20 })
+    .group(filteredGroup)
+    .dimension(dimension)
+    .colorCalculator(function (d, i) {
+      return vuedata.colors.default;
+    })
+    .label(function (d) {
+      if (d.key && d.key.length > charsLength) {
+        return d.key.substring(0, charsLength) + '...';
+      }
+      return d.key;
+    })
+    .title(function (d) {
+      return d.key + ': ' + d.value;
+    })
+    .elasticX(true)
+    .xAxis().ticks(4);
+  chart.render();
+}
 
       // Chart 4: Organizations Chart
-      var createOrganizationsChart = function () {
-        var chart = charts.organizations.chart;
-        var dimension = ndx.dimension(function (d) {
-          return d.organisation;
-        });
-        var group = dimension.group().reduceSum(function (d) {
-          return 1;
-        });
-        var filteredGroup = (function (source_group) {
-          return {
-            all: function () {
-              return source_group.top(10).filter(function (d) {
-                return (d.value != 0);
-              });
-            }
-          };
-        })(group);
-        var width = recalcWidth(charts.organizations.divId);
-        var charsLength = recalcCharsLength(width);
-
-        chart
-          .width(width)
-          .height(420)
-          .margins({ top: 0, left: 0, right: 0, bottom: 20 })
-          .group(filteredGroup)
-          .dimension(dimension)
-          .colorCalculator(function (d, i) {
-            return vuedata.colors.default1;
-          })
-          .label(function (d) {
-            if (d.key && d.key.length > charsLength) {
-              return d.key.substring(0, charsLength) + '...';
-            }
-            return d.key;
-          })
-          .title(function (d) {
-            return d.key + ': ' + d.value;
-          })
-          .elasticX(true)
-          .xAxis().ticks(4);
-        //chart.xAxis().tickFormat(numberFormat);
-        chart.render();
+// Chart 4: Organizations Chart
+var createOrganizationsChart = function () {
+  var chart = charts.organizations.chart;
+  var dimension = ndx.dimension(function (d) {
+    return d.organisation;
+  });
+  var group = dimension.group().reduceSum(function (d) {
+    return 1;
+  });
+  var filteredGroup = (function (source_group) {
+    return {
+      all: function () {
+        // Get the current crossfilter state including search filters
+        var allData = source_group.all();
+        
+        // If no data after filtering, return empty array
+        if (!allData.length) return [];
+        
+        // If we have a filter on this dimension, we should only show that organization
+        if (dimension.hasCurrentFilter()) {
+          return allData.filter(function(d) {
+            return d.key === dimension.currentFilter();
+          });
+        }
+        
+        // Otherwise show top 10 from filtered data
+        return allData
+          .filter(function(d) { return d.value > 0; })
+          .sort(function(a, b) { return b.value - a.value; })
+          .slice(0, 10);
       }
+    };
+  })(group);
+
+  var width = recalcWidth(charts.organizations.divId);
+  var charsLength = recalcCharsLength(width);
+
+  chart
+    .width(width)
+    .height(420)
+    .margins({ top: 0, left: 0, right: 0, bottom: 20 })
+    .group(filteredGroup)
+    .dimension(dimension)
+    .colorCalculator(function (d, i) {
+      return vuedata.colors.default1;
+    })
+    .label(function (d) {
+      if (d.key && d.key.length > charsLength) {
+        return d.key.substring(0, charsLength) + '...';
+      }
+      return d.key;
+    })
+    .title(function (d) {
+      return d.key + ': ' + d.value;
+    })
+    .elasticX(true)
+    .xAxis().ticks(4);
+  chart.render();
+}
 
       // Chart 5: Main Table
       var createTable = function () {
