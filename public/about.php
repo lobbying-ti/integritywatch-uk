@@ -38,13 +38,15 @@ Open Access UK includes a range of functions, allowing users to:
 <li>search, rank and filter the data</li>
 <li> download the data in Comma Separated Value (CSV) format</li>
 <li> share links to specific meetings on social media</li>
-<li> submit pre-populated freedom of information requests via  WhatDoTheyKnow.com</li><br>
+<li> submit pre-populated freedom of information requests via  WhatDoTheyKnow.com<sup>1</sup></li><br>
 
                 <p>We use cutting-edge AI based large language models to automatically categorise lobbying meetings. These models are great at categorising lobbying descriptions because they are trained on two key things: understanding language like humans do and processing vast amounts of information across many fields. They combine their language skills with their broad knowledge to make connections, helping them spot the real topic of a meeting even when it's not clearly stated.
 
 				Our system analyses the meeting descriptions, hosts, and lobbyists to determine what each meeting is about. We currently use four categories: Health, Housing, Defence and Climate.
 To make this work, we first taught our models using 2,000 real lobbying meetings that were manually labeled by our team. This training helps the AI understand the nuances of lobbying language and topics.
 Now, whenever new meeting data is released, our AI can quickly sort through it and categorise each meeting. This approach is highly accurate, but like any AI system, it might occasionally misclassify a meeting.</p>
+<br>			  <p><sup>1</sup> Elected representatives such as MSPs are not directly covered by FOI law. FOI applies to public authorities - and elected members are individuals, not public authorities. If MSPs receive a request for information using Open Access, MSPs may choose to answer them, but they are not required to do so by FOI law.</p>
+
               </div>
             </div>
           </div>
