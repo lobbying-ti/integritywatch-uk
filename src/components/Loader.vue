@@ -12,7 +12,9 @@
 		<br>
 		<h1 id="title">Open Access UK: monitor lobbying meetings across Whitehall and Holyrood</h1>
 		<p id="underlay">This is a user-friendly interactive database that provides a unique overview of lobby meetings with hosts in the UK Government, Scottish Government, and Scottish Parliament.</p>
-      </div>
+		<p id="underlay">We are currently missing 500 meetings based on best estimates from the Holyrood lobbying data due to issues encountered by the Scottish Lobbying register. We apologise for this inconvenience and are working with the Registrar to resolve it. Please contact us for more information.</p>
+
+	  </div>
     </div>
   </div>
 </template>
