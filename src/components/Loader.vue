@@ -12,7 +12,7 @@
 		<br>
 		<h1 id="title">Open Access UK: monitor lobbying meetings across Whitehall and Holyrood</h1>
 		<p id="underlay">This is a user-friendly interactive database that provides a unique overview of lobby meetings with hosts in the UK Government, Scottish Government, and Scottish Parliament.</p>
-      </div>
+	  </div>
     </div>
   </div>
 </template>
