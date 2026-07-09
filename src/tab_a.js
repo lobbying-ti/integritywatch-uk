@@ -85,7 +85,7 @@ new Vue({
   methods: {
     // Method to open a new window to download the dataset
     downloadDataset: function () {
-      window.open('./data/iw_uk.csv');
+      window.open('./data/iw_uk_download.csv');
     },
     // Method to share the current page on social media platforms
     share: function (platform) {
@@ -334,14 +334,57 @@ fetch('./data/iw_uk.json?' + randomPar)
       // Function to Export Filtered Data to CSV
       function exportFilteredData() {
         var allFilteredData = ndx.allFiltered();
-        const csvRows = [];
-        const headers = Object.keys(allFilteredData[0]);
-        csvRows.push(headers.join(','));
+
+        // Guard: don't crash when the filter set is empty
+        if (!allFilteredData.length) {
+          alert('No rows match the current filters.');
+          return;
+        }
+
+        // Date as dd/mm/yyyy (matches the on-screen table); fall back to the raw string.
+        const fmtDate = (r) => {
+          const d = r.date;
+          if (d instanceof Date && !isNaN(d)) {
+            return d.getDate() + '/' + (d.getMonth() + 1) + '/' + d.getFullYear();
+          }
+          return r.date1 || '';
+        };
+
+        // Shared export schema — keep in step with the overall dataset download
+        // (iw_uk_download.csv, built by pipeline notebook 3). MeetingUrl is only
+        // computed here in the browser.
+        const columns = [
+          { header: 'RecordID', get: (r) => r.RecordId },
+          { header: 'MemberID', get: (r) => '' },
+          { header: 'Host', get: (r) => r.rep_new },
+          { header: 'Role', get: (r) => r.ministerialLevel },
+          { header: 'Office', get: (r) => r.department },
+          { header: 'Date', get: fmtDate },
+          { header: 'Lobbyist', get: (r) => r.organisation },
+          { header: 'OthersAtTheMeeting', get: (r) => r.others_at_the_meeting },
+          { header: 'Purpose', get: (r) => r.purpose },
+          { header: 'Quarter', get: (r) => r.Quarter },
+          { header: 'PortalSource', get: (r) => r.portal_source },
+          { header: 'RegisterUrl', get: (r) => r.source },
+          { header: 'MeetingUrl', get: (r) => r.meetingUrl },
+          { header: 'Tag', get: (r) => r.tag },
+          { header: 'RegistrantInfo', get: (r) => r.registrant_additional_information }
+        ];
+
+        // Proper RFC-4180 CSV escaping: double internal quotes, wrap only when needed.
+        const csvEscape = (val) => {
+          let s = (val === null || val === undefined) ? '' : String(val);
+          if (/[",\r\n]/.test(s)) {
+            s = '"' + s.replace(/"/g, '""') + '"';
+          }
+          return s;
+        };
+
+        const csvRows = [columns.map(c => csvEscape(c.header)).join(',')];
         allFilteredData.forEach(row => {
-          const values = headers.map(header => JSON.stringify(row[header]));
-          csvRows.push(values.join(','));
+          csvRows.push(columns.map(c => csvEscape(c.get(row))).join(','));
         });
-        const csvData = csvRows.join('\n');
+        const csvData = csvRows.join('\r\n');
         const blob = new Blob([csvData], { type: 'text/csv;charset=utf-8;' });
         const url = URL.createObjectURL(blob);
         const link = document.createElement("a");

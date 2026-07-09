@@ -1,0 +1,8 @@
+# Dependencies
+node_modules/
+
+# Raw source-data drops (delivered to the site provider separately)
+*.zip
+
+# Friendly-header bulk download (generated / delivered separately, too large for git)
+public/data/iw_uk_download.csv
