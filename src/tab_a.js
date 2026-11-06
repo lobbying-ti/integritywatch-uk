@@ -488,8 +488,9 @@ fetch('./data/iw_uk.json?' + randomPar)
         Health: 'heart-pulse',
         Housing: 'house',
         Defence: 'shield-halved',
+        AI: 'robot',
       };
-      const filters = ['Climate', 'Health', 'Housing', 'Defence'];
+      const filters = ['Climate', 'Health', 'Housing', 'Defence', 'AI'];
 
       filters.forEach(filter => {
         const button = document.createElement('button');
