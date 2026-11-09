@@ -302,14 +302,14 @@ fetch('./data/iw_uk.json?' + randomPar)
           var lastWord = orgString.lastIndexOf(' ');
           orgString = orgString.substring(0, lastWord) + ' ...';
         }
-        var formTitle = encodeURI('FOI request: Meeting held on ' + d.date1 + ' with ' + d.rep_new + '.');
+        var formTitle = encodeURIComponent('FOI request: Meeting held on ' + d.date1 + ' with ' + d.rep_new + '.');
         var formMessage = 'Could you please acknowledge my request is being considered.\r\n'
           + 'For the meeting held on ' + d.date1 + ' between ' + d.rep_new + ' and ' + orgString + ', with purpose ' + d.purpose + '\r\ncould you please provide the following information:\r\n\r\n'
           + '• A full list of attendees, including full names and titles as well as who the attendee represents\r\n'
           + '• A copy of the meeting agenda\r\n'
           + '• Meeting notes/minutes taken during the meeting, as well as any briefing notes and papers\r\n'
           + '• Any correspondence associated with the attendees, including debriefs of the meeting via email or other forms of communication.\r\n';
-        formMessage = encodeURI(formMessage);
+        formMessage = encodeURIComponent(formMessage);
         d.requestFullUrl = requestBaseUrl + d.department_wdtk + '?title=' + formTitle + '&default_letter=' + formMessage;
         d.meetingUrl = window.location.href.split('?')[0] + '?meeting=' + d.RecordId;
       });

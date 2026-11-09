@@ -1,36 +1,42 @@
 dep,wdtk_name
 Attorney General's Office,ago
 Cabinet Office,cabinet_office
-"Department for Business, Energy & Industrial Strategy",dbt
+"Department for Business, Energy & Industrial Strategy",bist
 "Department for Digital, Culture, Media & Sport",dcms
+"Department for Culture, Media and Sport",dcms
 Department for Education,dfe
-Department for Energy & Climate Change,decc
+Department for Energy & Climate Change,department_for_energy_security_and_net_zero
 "Department for Environment, Food & Rural Affairs",defra
-Department for Exiting the European Union,deeu
-Department for International Development,dfid
-Department for International Trade,dbt
+Department for Exiting the European Union,cabinet_office
+Department for International Development,fcdo
+Department for International Trade,bist
 Department for Transport,dft
 Department for Work and Pensions,dwp
 Department of Health and Social Care,dhsc
+Department of Health & Social Care,dhsc
 Deputy Prime Minister's Office,cabinet_office
 Foreign & Commonwealth Office,fcdo
 "Foreign, Commonwealth & Developments Office",fcdo
-"Foreign, Commonwealth & Development Office",fcdo
 "Foreign, Commonwealth & Development Office",fcdo
 HM Treasury,hm_treasury
 Home Office,home_office
 Ministry of Defence,mod
 "Ministry of Housing, Communities & Local Government",mhclg
-"Department for Levelling Up, Housing and Communities",luhc
+"Ministry of Housing, Communities and Local Government",mhclg
+"Department for Levelling Up, Housing and Communities",mhclg
 Ministry of Justice,moj
 Northern Ireland Office,nio
+Nothern Ireland Office,nio
 Office of the Advocate General for Scotland,office_of_the_advocate_general_for_scotland
 Office of the Secretary of State for Scotland,scotland_office
+Scotland Office,scotland_office
 Office of the Secretary of State for Wales,wales_office_swyddfa_cymru
+Wales Office,wales_office_swyddfa_cymru
 Prime Minister's Office,number_10
 Whips' office,cabinet_office
 Whips' Office,cabinet_office
-Department for Business and Trade,dbt
-Department for Energy Security & Net Zero,desnz
+Department for Business and Trade,bist
+"Department for Science, Innovation and Technology",bist
+Department for Energy Security & Net Zero,department_for_energy_security_and_net_zero
 Scottish Government,scottish_government
 Scottish Parliament,scottish_parliament

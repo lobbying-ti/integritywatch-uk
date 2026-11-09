@@ -18,7 +18,7 @@
     <link href="https://fonts.googleapis.com/css?family=Quicksand:500" rel="stylesheet">
 	    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-    <link rel="stylesheet" href="static/tab_a.css">
+    <link rel="stylesheet" href="static/tab_a.css?v=20261109">
 </head>
 <body>
 
@@ -221,7 +221,7 @@
     <script type="text/javascript" src="vendor/js/crossfilter.min.js"></script>
     <script type="text/javascript" src="vendor/js/dc.js"></script>
     <script type="text/javascript" src="vendor/js/dc.cloud.js"></script>
-    <script src="static/tab_a.js"></script>
+    <script src="static/tab_a.js?v=20261109"></script>
 
  
 </body>
